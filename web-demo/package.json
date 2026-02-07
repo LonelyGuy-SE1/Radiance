@@ -1,0 +1,19 @@
+{
+  "name": "hlpc-web-demo",
+  "version": "1.0.0",
+  "description": "H-LPC Hand-Anchored Luminous Particle Cloud — Three.js Web Demo",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mediapipe/hands": "^0.4.1675469240",
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}

@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/jpeg" href="/src/SE1.jpg" />
+    <title>HUD</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #000;
+        overflow: hidden;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        color: #fff;
+      }
+
+      #video-feed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: fill; /* stretch to EXACT viewport size — ensures [0,1] landmark alignment */
+        transform: scaleX(-1); /* selfie mirror */
+        z-index: 0;
+      }
+
+      #canvas3d {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 1;
+        pointer-events: none; /* clicks pass through to controls */
+      }
+
+      #hud {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        font-size: 13px;
+        line-height: 1.6;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.45);
+        padding: 10px 14px;
+        border-radius: 8px;
+        pointer-events: none;
+        font-variant-numeric: tabular-nums;
+        backdrop-filter: blur(6px);
+      }
+      #hud b {
+        color: #8cf;
+      }
+
+      #controls {
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.55);
+        padding: 12px 16px;
+        border-radius: 8px;
+        width: 210px;
+        backdrop-filter: blur(6px);
+        pointer-events: auto;
+      }
+      #controls label {
+        display: block;
+        font-size: 11px;
+        margin-top: 6px;
+        color: #aaa;
+      }
+      #controls input[type="range"] {
+        width: 100%;
+        accent-color: #6af;
+      }
+      #controls select,
+      #controls button {
+        width: 100%;
+        margin-top: 6px;
+        padding: 4px 8px;
+        background: #222;
+        color: #fff;
+        border: 1px solid #444;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #controls button:hover {
+        background: #333;
+      }
+
+      .status-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 4px;
+      }
+      .status-dot.active {
+        background: #4f4;
+      }
+      .status-dot.inactive {
+        background: #f44;
+      }
+    </style>
+  </head>
+  <body>
+    <video id="video-feed" autoplay playsinline></video>
+
+    <canvas id="canvas3d"></canvas>
+
+    <div id="hud">
+      <b>H-LPC</b><br />
+      <span class="status-dot inactive" id="trackStatus"></span>
+      <span id="trackLabel">Show your hand ✋</span><br />
+      FPS: <span id="fpsDisplay">--</span><br />
+      Particles: <span id="particleDisplay">--</span><br />
+      Spread: <span id="spreadDisplay">--</span> &nbsp;|&nbsp; Clench:
+      <span id="clenchDisplay">--</span>
+    </div>
+
+    <div id="controls">
+      <b>Preset</b>
+      <select id="presetSelect">
+        <option value="high">High (35k)</option>
+        <option value="medium" selected>Medium (25k)</option>
+        <option value="mobile">Mobile (12k)</option>
+      </select>
+
+      <label>Particle Size</label>
+      <input
+        type="range"
+        id="particleSize"
+        min="1"
+        max="15"
+        step="0.5"
+        value="6"
+      />
+
+      <label
+        >Sensitivity <span id="sensVal" style="color: #6af">0.30</span></label
+      >
+      <input
+        type="range"
+        id="sensitivitySlider"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.30"
+      />
+
+      <button id="toggleSim">✋ Camera Mode</button>
+      <button id="toggleSkeleton">🦴 Skeleton: OFF</button>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

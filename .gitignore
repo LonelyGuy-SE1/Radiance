@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node
+web-demo/node_modules/
+web-demo/dist/
+web-demo/.vercel/
