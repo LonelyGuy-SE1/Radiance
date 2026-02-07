@@ -10,7 +10,7 @@ This is a hand tracking thing that puts glowing particles around your hand using
 - Glowing dot trails that swirl outward
 - Sparks fly when you pinch or open your fist fast
 
-There's a control panel in the top right where you can change the particle count, size, sensitivity, and toggle a skeleton view on/off.
+There's a control panel in the top right where you can change the particle count, size, sensitivity, and toggle a skeleton view on/off. (I suggest you tweak around the sensitivity and size a bit in order to get the best experience, I personally prefer it at a sensitivity of 1 :))
 
 ## How to run it
 
